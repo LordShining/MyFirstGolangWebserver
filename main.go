@@ -46,6 +46,7 @@ func create(ctx iris.Context) {
 	err := ctx.ReadJSON(&b)
 	// TIP: use ctx.ReadBody(&b) to bind
 	// any type of incoming data instead.
+	fmt.Println(b)
 	if err != nil {
 		ctx.StopWithProblem(iris.StatusBadRequest, iris.NewProblem().
 			Title("Book creation failure").DetailErr(err))
@@ -53,8 +54,12 @@ func create(ctx iris.Context) {
 		// plain text responses are expected on errors.
 		return
 	}
-
+	books := []Book{
+		{"Mastering Concurrency in Go"},
+		{"Go Design Patterns"},
+		{"Black Hat Go"},
+	}
 	println("Received Book: " + b.Title)
-
-	ctx.StatusCode(iris.StatusCreated)
+	ctx.JSON(books)
+	//ctx.StatusCode(iris.StatusCreated)
 }

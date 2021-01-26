@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println("hello world")
+	fmt.Println("hello new world")
 	app := iris.New()
 	booksAPI := app.Party("/books")
 	{
